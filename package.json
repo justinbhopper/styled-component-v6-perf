@@ -1,0 +1,13 @@
+{
+  "name": "styled-compopnent-v6-perf",
+  "scripts": {},
+  "dependencies": {
+    "react": "18.2.0",
+    "styled-components": "6.0.0-rc.1",
+    "tslib": "2.5.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.6",
+    "typescript": "5.0.4"
+  }
+}
