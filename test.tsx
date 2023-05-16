@@ -37,10 +37,11 @@ export const ParentComponent2 = styled.div<{ waz: number }>`
 `;
 
 export const ErrorExample = (_props: ParentComponentProps) => {
-  // Notice here ts thinks <ParentComponent> mistakenly needs the "foo" prop
   return (
     <>
+      Notice here ts thinks ParentComponent mistakenly needs the "foo" prop
       <ParentComponent1>test</ParentComponent1>
+      Any component that explicitly defined its props does not have this issue
       <ParentComponent2 waz={42}>test</ParentComponent2>
     </>
   );
