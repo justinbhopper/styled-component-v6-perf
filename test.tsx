@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
-interface ParentComponentProps {
+interface UnstyledComponentProps {
   foo: VeryLargeUnionType; // Comment out this line to compare performance
 }
 
-const BaseComponent = (_props: ParentComponentProps) => {
+const UnstyledComponent = (_props: UnstyledComponentProps) => {
   return <></>;
 };
 
-export const MyStyledComponent = styled(BaseComponent)`
+export const StyledComponent = styled(UnstyledComponent)`
   // Multiple template strings helps illustrate perf issue
   color: ${props => props.theme.waz};
   color: ${props => props.theme.waz};
@@ -22,27 +22,37 @@ export const MyStyledComponent = styled(BaseComponent)`
   color: ${props => props.theme.waz};
 `;
 
-export const ParentComponent1 = styled.div`
-  ${MyStyledComponent} {
+const InheritedStyledComponent = styled(StyledComponent)``;
+
+const DivWithoutProps = styled.div`
+  ${StyledComponent} {
     display: block;
   }
 `;
 
-export const ParentComponent2 = styled.div<{ waz: number }>`
-  ${MyStyledComponent} {
+const DivWithProps = styled.div<{ waz: number }>`
+  ${StyledComponent} {
     display: block;
   }
 
   color: ${props => props.waz};
 `;
 
-export const ErrorExample = (_props: ParentComponentProps) => {
+const InheritedDivWithProps = styled(DivWithProps)`
+  color: ${props => props.waz};
+`;
+
+export const Example = () => {
   return (
     <>
-      Notice here ts thinks ParentComponent mistakenly needs the "foo" prop
-      <ParentComponent1>test</ParentComponent1>
-      Any component that explicitly defined its props does not have this issue
-      <ParentComponent2 waz={42}>test</ParentComponent2>
+      Notice here ts thinks DivWithoutProps mistakenly needs the "foo" prop
+      <DivWithoutProps>test</DivWithoutProps>
+      <DivWithProps waz={42}>test</DivWithProps>
+      <InheritedDivWithProps waz={42}>test</InheritedDivWithProps>
+
+      <UnstyledComponent foo="add-clip" />
+      <StyledComponent foo="add-clip" />
+      <InheritedStyledComponent foo="add-clip" />
     </>
   );
 };
