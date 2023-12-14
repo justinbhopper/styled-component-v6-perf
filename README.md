@@ -1,3 +1,7 @@
+This performance issue now appears resolved.  Ignore this repo.
+
+#
+
 1. Run `npm install`
 2. Run `npx tsc --build -f --diagnostics`, notice compile takes > 10 seconds
 3. Comment out line 4 in test.tsx
