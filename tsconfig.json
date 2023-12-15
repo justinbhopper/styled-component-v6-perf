@@ -18,13 +18,14 @@
     ],
     "module": "esnext",
     "moduleResolution": "node",
-    "noEmit": true,
+    "noEmit": false,
     "noEmitHelpers": false,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "outDir": "lib",
     "plugins": [
       // Transform paths in output .js files
       { "transform": "typescript-transform-paths" },
